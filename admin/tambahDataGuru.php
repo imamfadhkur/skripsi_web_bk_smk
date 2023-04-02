@@ -64,7 +64,7 @@ if (isset($_POST["tambah"])) {
     <label class="form-label">Kategori</label>
     <select name="level" class="form-control">
       <option value="guru" selected>Guru</option>
-      <option value="admin">BK</option>
+      <option value="admin">BK (admin)</option>
     </select>
   </div>
   <div class="mb-3">

@@ -27,7 +27,7 @@
         <th scope="row"><?php echo $count ?></th>
         <td><?php echo $value["nisn"] ?></td>
         <td><?php echo $value["nama"] ?></td>
-        <td><?php echo $value["Eeail"] ?></td>
+        <td><?php echo $value["email"] ?></td>
         <td><?php echo $value["kelas_siswa"] ?></td>
         <td><?php echo $value["jurusan"] ?></td>
         <td><?php echo $value["orang_tua"] ?></td>

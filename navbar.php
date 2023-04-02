@@ -116,7 +116,7 @@ else {
                   <a class="nav-link active" href="/desi/admin/data.php">Data</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link active" href="/desi/admin/rekap_pelanggaran.php">Pelanggaran</a>
+                  <a class="nav-link active" href="/desi/admin/pelanggaran.php">Pelanggaran</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link active" href="/desi/admin/user.php">User</a>

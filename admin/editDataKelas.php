@@ -66,7 +66,7 @@ if ($_GET["nama"]) {
         $query = mysqli_query($con_mysqli, "SELECT * FROM jurusan");
         while ($row_j = mysqli_fetch_array($query)) {
           ?>
-          <option value="<?php echo $row_j['singkatan']?>" <?php echo $value["nama"] = $row_j["singkatan"] ? "selected" : ""; ?>><?php echo $row_j['nama']?></option>
+          <option value="<?php echo $row_j['singkatan']?>" <?php echo $value["nama"] == $row_j["singkatan"] ? "selected" : ""; ?>><?php echo $row_j['nama']?></option>
           <?php
         }
       ?>
