@@ -116,8 +116,11 @@ else {
         <?php
           if (isset($_SESSION["admin"])) {
             ?>
+            <li class="nav-item">
+                <a class="nav-link active" href="/desi/admin/index.php">Dashboard</a>
+            </li>
               <li class="nav-item">
-                  <a class="nav-link active" href="/desi/admin/index.php">Dashboard</a>
+                  <a class="nav-link active" href="/desi/admin/konsultasi.php">Konsultasi</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link active" href="/desi/admin/data.php">Data</a>
@@ -154,9 +157,6 @@ else {
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="/desi/guru/pelanggaran.php">Pelanggaran</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="/desi/guru/konsultasi.php">Konsultasi</a>
             </li>
             <?php
           }
