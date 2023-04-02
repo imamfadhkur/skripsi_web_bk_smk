@@ -18,9 +18,9 @@ else {
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
-<nav class="navbar navbar-expand-lg bg-light px-5 navbar-light border-bottom" style="z-index: 20">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<nav class="navbar navbar-expand-lg bg-light px-5 navbar-light border-bottom d-print-none" style="z-index: 20">
+  <div class="container-fluid d-print-none">
+    <div class="collapse navbar-collapse d-print-none" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <img src="/desi/assets/img/header_smkn2bkl.png" alt="smkn 2 bkl" width="25%">
       </ul>
@@ -85,20 +85,25 @@ else {
   </div>
 </nav>
 
-<nav class="navbar sticky-top navbar-dark border-bottom bg-primary navbar-expand-lg mx-6 my-6 px-3" style="z-index: 10">
-  <div class="container-fluid mx-5">
+<nav class="navbar sticky-top navbar-dark border-bottom bg-primary navbar-expand-lg mx-6 my-6 px-3 d-print-none" style="z-index: 10">
+  <div class="container-fluid mx-5 d-print-none">
     <?php
+    $query = "SELECT nama_website FROM settings";
+    $result = $con_mysqli->query($query);
+    $row = $result->fetch_assoc();
+    $nama_web = $row["nama_website"];
+
     if (isset($_SESSION["guru"])) {
-      echo '<a class="navbar-brand fs-5" href="/desi/guru/index.php">SMKN 2 Bangkalan</a>';
+      echo '<a class="navbar-brand fs-5" href="/desi/guru/index.php">'.$nama_web.'</a>';
     }
     elseif (isset($_SESSION["siswa"])) {
-      echo '<a class="navbar-brand fs-5" href="/desi/siswa/index.php">SMKN 2 Bangkalan</a>';
+      echo '<a class="navbar-brand fs-5" href="/desi/siswa/index.php">'.$nama_web.'</a>';
     }
     elseif (isset($_SESSION["admin"])) {
-      echo '<a class="navbar-brand fs-5" href="/desi/admin/index.php">SMKN 2 Bangkalan</a>';
+      echo '<a class="navbar-brand fs-5" href="/desi/admin/index.php">'.$nama_web.'</a>';
     }
     else {
-      echo '<a class="navbar-brand fs-5" href="/desi/index.php">SMKN 2 Bangkalan</a>';
+      echo '<a class="navbar-brand fs-5" href="/desi/index.php">'.$nama_web.'</a>';
     }
     ?>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

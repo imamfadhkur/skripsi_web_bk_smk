@@ -20,16 +20,16 @@ if (!isset($_SESSION["admin"])) {
     <?php include "../navbar.php" ?>
     <div class="row">
         <div class="col-2">
-<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark">
+<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark d-print-none">
     <a href="/desi/admin/pelanggaran.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <span class="fs-4">PELANGGARAN</span>
+      <span class="fs-4 d-print-none">PELANGGARAN</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-      <li><a href="#" id="guru" class="nav-link text-white">Kategori Pelanggaran</a></li>
-      <li><a href="#" id="jurusan" class="nav-link text-white">Tata Tertib</a></li>
-      <li><a href="#" id="kelas" class="nav-link text-white">List Pelanggaran</a></li>
-      <li><a href="#" id="siswa" class="nav-link text-white">Rekap Pelanggaran</a></li>
+      <li><a href="#" id="kp" class="nav-link text-white">Kategori Pelanggaran</a></li>
+      <li><a href="#" id="tatib" class="nav-link text-white">Tata Tertib</a></li>
+      <li><a href="#" id="lp" class="nav-link text-white">List Pelanggaran</a></li>
+      <li><a href="#" id="rp" class="nav-link text-white">Rekap Pelanggaran</a></li>
     </ul>
 </div>
         </div>
@@ -52,73 +52,73 @@ if (!isset($_SESSION["admin"])) {
   <script src="../assets/js/sidebar.js"></script>
   <script>
     // Mengambil referensi tombol dan elemen yang ingin diubah atribut CSS-nya
-    const btnGuru = document.getElementById("guru");
-    const btnJurusan = document.getElementById("jurusan");
-    const btnKelas = document.getElementById("kelas");
-    const btnSiswa = document.getElementById("siswa");
+    const btnkp = document.getElementById("kp");
+    const btntatib = document.getElementById("tatib");
+    const btnlp = document.getElementById("lp");
+    const btnrp = document.getElementById("rp");
 
-    function loadDataGuru() {
-        btnGuru.classList.add("active");
-        fetch("/desi/admin/data_guru.php")
+    function loadPelanggarankp() {
+        btnkp.classList.add("active");
+        fetch("/desi/admin/pelanggaran_kp.php")
         .then(response => response.text())
         .then(data => {
             document.getElementById("my-data").innerHTML = data;
         });
-        btnJurusan.classList.remove("active");
-        btnKelas.classList.remove("active");
-        btnSiswa.classList.remove("active");
+        btntatib.classList.remove("active");
+        btnlp.classList.remove("active");
+        btnrp.classList.remove("active");
     }
-    function loadDataJurusan() {
-        btnJurusan.classList.add("active");
-        fetch("/desi/admin/data_jurusan.php")
+    function loadPelanggarantatib() {
+        btntatib.classList.add("active");
+        fetch("/desi/admin/pelanggaran_tatib.php")
         .then(response => response.text())
         .then(data => {
             document.getElementById("my-data").innerHTML = data;
         });
-        btnGuru.classList.remove("active");
-        btnKelas.classList.remove("active");
-        btnSiswa.classList.remove("active");
+        btnkp.classList.remove("active");
+        btnlp.classList.remove("active");
+        btnrp.classList.remove("active");
     }
-    function loadDataKelas() {
-        btnKelas.classList.add("active");
-        fetch("/desi/admin/data_kelas.php")
+    function loadPelanggaranlp() {
+        btnlp.classList.add("active");
+        fetch("/desi/admin/pelanggaran_lp.php")
         .then(response => response.text())
         .then(data => {
             document.getElementById("my-data").innerHTML = data;
         });
-        btnGuru.classList.remove("active");
-        btnJurusan.classList.remove("active");
-        btnSiswa.classList.remove("active");
+        btnkp.classList.remove("active");
+        btntatib.classList.remove("active");
+        btnrp.classList.remove("active");
     }
-    function loadDataSiswa() {
-        btnSiswa.classList.add("active");
-        fetch("/desi/admin/data_siswa.php")
+    function loadPelanggaranrp() {
+        btnrp.classList.add("active");
+        fetch("/desi/admin/pelanggaran_rp.php")
         .then(response => response.text())
         .then(data => {
             document.getElementById("my-data").innerHTML = data;
         });
-        btnGuru.classList.remove("active");
-        btnJurusan.classList.remove("active");
-        btnKelas.classList.remove("active");
+        btnkp.classList.remove("active");
+        btntatib.classList.remove("active");
+        btnlp.classList.remove("active");
     }
 
-    btnGuru.addEventListener("click", loadDataGuru);
-    btnJurusan.addEventListener("click", loadDataJurusan);
-    btnKelas.addEventListener("click", loadDataKelas);
-    btnSiswa.addEventListener("click", loadDataSiswa);
+    btnkp.addEventListener("click", loadPelanggarankp);
+    btntatib.addEventListener("click", loadPelanggarantatib);
+    btnlp.addEventListener("click", loadPelanggaranlp);
+    btnrp.addEventListener("click", loadPelanggaranrp);
 
     // ambil nilai parameter runFunction dari URL
     const urlParams = new URLSearchParams(window.location.search);
     const runFunction = urlParams.get('runFunction');
     // jalankan fungsi yang diinginkan berdasarkan nilai parameter runFunction
-    if (runFunction === 'getDataGuru') {
-      loadDataGuru();
-    } else if (runFunction === 'getDataJurusan') {
-      loadDataJurusan();
-    } else if (runFunction === 'getDataKelas') {
-      loadDataKelas();
-    } else if (runFunction === 'getDataSiswa') {
-      loadDataSiswa();
+    if (runFunction === 'getPelanggarankp') {
+      loadPelanggarankp();
+    } else if (runFunction === 'getPelanggarantatib') {
+      loadPelanggarantatib();
+    } else if (runFunction === 'getPelanggaranlp') {
+      loadPelanggaranlp();
+    } else if (runFunction === 'getPelanggaranrp') {
+      loadPelanggaranrp();
     } else {
       // tidak ada parameter runFunction atau nilai yang tidak valid
       // tidak melakukan apa-apa
