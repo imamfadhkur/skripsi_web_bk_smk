@@ -1,4 +1,5 @@
 <?php
+include "koneksi.php";
 $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 if (strpos($url, "guru") || strpos($url, "admin") || strpos($url, "siswa")) {
   ?>
@@ -9,6 +10,7 @@ if (strpos($url, "guru") || strpos($url, "admin") || strpos($url, "siswa")) {
 }
 else {
   ?>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/jumbotron/">
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <script src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -124,9 +126,6 @@ else {
                   <a class="nav-link active" href="/desi/admin/pelanggaran.php">Pelanggaran</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link active" href="/desi/admin/user.php">User</a>
-              </li>
-              <li class="nav-item">
                   <a class="nav-link active" href="/desi/admin/settings.php">Settings</a>
               </li>
               <?php
@@ -151,7 +150,10 @@ else {
               <a class="nav-link active" href="/desi/guru/index.php">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="/desi/pengumuman.php">Pengumuman</a>
+                <a class="nav-link active" href="/desi/guru/data.php">Data</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/desi/guru/pelanggaran.php">Pelanggaran</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="/desi/guru/konsultasi.php">Konsultasi</a>

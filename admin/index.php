@@ -56,6 +56,44 @@ if (!isset($_SESSION["admin"])) {
 </div>
             </div>
         </div>
+        <div class="row my-4">
+            <div class="col-3">
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Kategori Pelanggaran</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="/desi/admin/pelanggaran.php?runFunction=getPelanggarankp" class="btn btn-primary">lihat</a>
+  </div>
+</div>
+            </div>
+            <div class="col-3">
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Tata Tertib</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="/desi/admin/pelanggaran.php?runFunction=getPelanggarantatib" class="btn btn-primary">lihat</a>
+  </div>
+</div>
+            </div>
+            <div class="col-3">
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">List Pelanggaran</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="/desi/admin/pelanggaran.php?runFunction=getPelanggaranlp" class="btn btn-primary">lihat</a>
+  </div>
+</div>
+            </div>
+            <div class="col-3">
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Rekap Pelanggaran</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="/desi/admin/pelanggaran.php?runFunction=getPelanggaranrp" class="btn btn-primary">lihat</a>
+  </div>
+</div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
