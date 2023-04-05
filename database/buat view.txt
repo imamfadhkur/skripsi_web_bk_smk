@@ -1,0 +1,5 @@
+CREATE VIEW view_total_poin_siswa AS
+SELECT SUM(kategori_pelanggaran.poin) AS total_poin, list_pelanggaran.nisn_siswa
+FROM kategori_pelanggaran
+JOIN list_pelanggaran ON kategori_pelanggaran.nama_pelanggaran = list_pelanggaran.kategori_pelanggaran
+GROUP BY list_pelanggaran.nisn_siswa;
