@@ -44,6 +44,7 @@ if (isset($_POST["submit_login"])) {
             $result = mysqli_query($con_mysqli, $sql);
             $row = mysqli_fetch_assoc($result);
             $data = array(
+                'nip' => $row["nip"],
                 'nama' => $row["nama"],
                 'email' => $row["email"],
                 'level' => $row["level"]

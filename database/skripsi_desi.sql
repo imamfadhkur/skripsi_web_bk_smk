@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2023 at 03:53 PM
+-- Generation Time: Apr 05, 2023 at 04:26 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,7 +39,7 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`nip`, `nama`, `email`, `level`) VALUES
-('23432', 'Dr. Happy Hogan ', 'ewd@fdfd.s', 'guru'),
+('23432', 'Dr. Happy Hogan ', 'ewd@fdfd.s', 'admin'),
 ('352016', 'DESIRE', 'pele@gmail.com', 'admin');
 
 -- --------------------------------------------------------
@@ -106,6 +106,32 @@ INSERT INTO `kelas` (`nama`, `jurusan`, `wali_kelas`, `total_siswa`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `konsultasi`
+--
+
+CREATE TABLE `konsultasi` (
+  `id` int(11) NOT NULL,
+  `sender_id` varchar(64) NOT NULL,
+  `receiver_id` varchar(64) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `konsultasi`
+--
+
+INSERT INTO `konsultasi` (`id`, `sender_id`, `receiver_id`, `message`, `created_at`) VALUES
+(1, '352011', '352016', 'hallo bu guru, saya mau konsultasi.\nteman saya saat berangkat sekolah cuma di beri uang saku 5ribu sama orang tua nya. Saya kasihan karena sedikit sedangkan uang saku saya 40ribu setiap berangkat sekolah, apa uang teman saya, saya minta sekalian saja ya ibu, biar dia tidak usah punya uang sekalian daripada sedikit mwehehe...', '2023-04-03 14:40:29'),
+(2, '352011', '352016', 'baeq ibu, tx..', '2023-04-05 13:27:44'),
+(5, '352011', '352016', 'eh tapi ibu', '2023-04-05 13:46:15'),
+(6, '352011', '352016', 'yasudahlah', '2023-04-05 13:46:30'),
+(8, '352011', '352016', 'entahlah, apa', '2023-04-05 14:23:11'),
+(9, '352011', '23432', 'tes', '2023-04-05 14:24:05');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `list_pelanggaran`
 --
 
@@ -143,7 +169,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `nama_website`, `total_poin`) VALUES
-(1, 'SMKN 2 Bangkalan jaya makmur rayaaaaa sentosaaaaa', 15);
+(1, 'SMKN 2 Bangkalan', 15);
 
 -- --------------------------------------------------------
 
@@ -202,6 +228,29 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tanggapan`
+--
+
+CREATE TABLE `tanggapan` (
+  `id_tanggapan` int(11) NOT NULL,
+  `id_konsultasi` int(11) NOT NULL,
+  `pemberi_tanggapan` varchar(64) NOT NULL,
+  `isi_tanggapan` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tanggapan`
+--
+
+INSERT INTO `tanggapan` (`id_tanggapan`, `id_konsultasi`, `pemberi_tanggapan`, `isi_tanggapan`, `created_at`) VALUES
+(1, 1, '352016', 'boleh silahkan, setelah itu uangnya+uangmu kasih ke ibu ya, biar ibu kasih kan ke itu anak :)', '2023-04-04 15:05:27'),
+(2, 1, '352016', 'enggak enggak, bercanda kok. boleh kamu minta, tapi nanti setelah kamu minta kasih ke ibu ya uangnya, buat jajan ibu.', '2023-04-05 12:51:10'),
+(3, 1, '352016', 'balasan tanggapan dari admin/BK', '2023-04-05 14:04:50');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tata_tertib`
 --
 
@@ -237,7 +286,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`username`, `password`, `level`) VALUES
 ('0208990001', '3e43121db6b7db3346b03856fbc42b8dbe2ee5f7daa19dc1e0b7288d7f487739', 'siswa'),
 ('21433', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'siswa'),
-('23432', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'guru'),
+('23432', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin'),
 ('34125689', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'siswa'),
 ('352011', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'siswa'),
 ('352016', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin');
@@ -293,6 +342,14 @@ ALTER TABLE `kelas`
   ADD KEY `wali_kelas` (`wali_kelas`);
 
 --
+-- Indexes for table `konsultasi`
+--
+ALTER TABLE `konsultasi`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `konsultasi_ibfk_1` (`receiver_id`),
+  ADD KEY `konsultasi_ibfk_2` (`sender_id`);
+
+--
 -- Indexes for table `list_pelanggaran`
 --
 ALTER TABLE `list_pelanggaran`
@@ -317,6 +374,14 @@ ALTER TABLE `siswa`
   ADD KEY `jurusan` (`jurusan`);
 
 --
+-- Indexes for table `tanggapan`
+--
+ALTER TABLE `tanggapan`
+  ADD PRIMARY KEY (`id_tanggapan`),
+  ADD KEY `id_konsultasi` (`id_konsultasi`),
+  ADD KEY `pemberi_tanggapan` (`pemberi_tanggapan`);
+
+--
 -- Indexes for table `tata_tertib`
 --
 ALTER TABLE `tata_tertib`
@@ -333,6 +398,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `konsultasi`
+--
+ALTER TABLE `konsultasi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `list_pelanggaran`
 --
 ALTER TABLE `list_pelanggaran`
@@ -343,6 +414,12 @@ ALTER TABLE `list_pelanggaran`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tanggapan`
+--
+ALTER TABLE `tanggapan`
+  MODIFY `id_tanggapan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -362,6 +439,13 @@ ALTER TABLE `kelas`
   ADD CONSTRAINT `wali_kelas` FOREIGN KEY (`wali_kelas`) REFERENCES `guru` (`nip`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `konsultasi`
+--
+ALTER TABLE `konsultasi`
+  ADD CONSTRAINT `konsultasi_ibfk_1` FOREIGN KEY (`receiver_id`) REFERENCES `guru` (`nip`),
+  ADD CONSTRAINT `konsultasi_ibfk_2` FOREIGN KEY (`sender_id`) REFERENCES `siswa` (`nisn`);
+
+--
 -- Constraints for table `list_pelanggaran`
 --
 ALTER TABLE `list_pelanggaran`
@@ -377,6 +461,13 @@ ALTER TABLE `siswa`
   ADD CONSTRAINT `siswa_ibfk_1` FOREIGN KEY (`nisn`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `siswa_ibfk_2` FOREIGN KEY (`kelas_siswa`) REFERENCES `kelas` (`nama`),
   ADD CONSTRAINT `siswa_ibfk_3` FOREIGN KEY (`jurusan`) REFERENCES `jurusan` (`singkatan`);
+
+--
+-- Constraints for table `tanggapan`
+--
+ALTER TABLE `tanggapan`
+  ADD CONSTRAINT `tanggapan_ibfk_1` FOREIGN KEY (`id_konsultasi`) REFERENCES `konsultasi` (`id`),
+  ADD CONSTRAINT `tanggapan_ibfk_2` FOREIGN KEY (`pemberi_tanggapan`) REFERENCES `guru` (`nip`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
